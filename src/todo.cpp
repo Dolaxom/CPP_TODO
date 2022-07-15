@@ -66,12 +66,39 @@ void ToDoList::output()
     file.close();
 }
 
-void ToDoList::TUI()
+int ToDoList::TUI(int mode)
 {
-    std::cout << termcolor::white;
-    std::cout << "1. New Task\n";
-    std::cout << "2. Delete Task\n";
-    std::cout << "3. Output Tasks\n";
+    if (mode == 1)
+    {
+        std::cout << termcolor::white;
+        std::cout << "1. New Task\n";
+        std::cout << "2. Delete Task\n";
+        std::cout << "3. Output Tasks\n";
+
+        return 0;
+    }
+    else if (mode == 2)
+    {
+        std::cout << "Enter an item: ";
+        int choice = makeChoice();
+
+        return choice;
+    }
+    else if (mode == 3)
+    {
+        std::cout << termcolor::white;
+        std::cout << "1. New Task\n";
+        std::cout << "2. Delete Task\n";
+        std::cout << "3. Output Tasks\n";
+
+        std::cout << "Enter an item: ";
+        int choice = makeChoice();
+
+        return choice;
+    }
+
+    return 0;
+
 }
 
 int ToDoList::makeChoice()
@@ -82,4 +109,30 @@ int ToDoList::makeChoice()
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     return result; 
+}
+
+void ToDoList::choiceHandle(int choice)
+{
+    if (choice == 1)
+    {
+        string s1;
+        std::cout << "Enter new task: ";
+        std::getline(std::cin, s1);
+        std::cout << "\e[H\e[2J\e[3J";
+        newTask(s1);
+    }
+    else if (choice == 2)
+    {
+        std::cout << "Enter number of task: ";
+        int index = makeChoice();
+        if (deleteTask(index) != false)
+        {
+            std::cout << "\e[H\e[2J\e[3J";
+        }
+    }
+    else if (choice == 3)
+    {
+        std::cout << "\e[H\e[2J\e[3J";
+        output();
+    }
 }

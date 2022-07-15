@@ -13,14 +13,17 @@ using std::string;
 class ToDoList {
     public:
         ToDoList();
+        int TUI(int mode);
+        void choiceHandle(int choice);
+
+    protected:
         void newTask(string newTask);
         bool deleteTask(int index);
-        void output();
-        void TUI();
-        int makeChoice();
 
     private:
         string nameOfFile;
+        int makeChoice();
+        void output();
 };
 
 #endif
