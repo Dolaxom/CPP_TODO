@@ -21,6 +21,13 @@ The ``src`` folder contains all the source C++ files of the project. The ``mater
 | Settings file           | ❌          |
 | Data encryption         | ❌          |
 
+
+## Building the program:
+
+To build the program, use the **Makefile** and write ``make`` in the terminal *(in src folder)*, or compile manually using the g++.
+
+<img src="materials/img/img2.png" width="500">
+
 ---
 
 [Termcolor](https://github.com/ikalnytskyi/termcolor) library is used for color output to the terminal!
