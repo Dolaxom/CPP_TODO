@@ -26,7 +26,7 @@ bool ToDoList::deleteTask(int index)
         }
         file.close();
 
-        if (index > tmp.size())
+        if (index > (int)tmp.size())
         {
             std::cout << termcolor::red << "ERROR: " << termcolor::white << "Your index > max num of tasks\n";
             return false;
