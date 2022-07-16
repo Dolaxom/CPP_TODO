@@ -1,3 +1,5 @@
+# CPP_TODO v0.2.1
+
 ## TODO application written in C++ running in a terminal
 
 
@@ -15,7 +17,7 @@ The ``src`` folder contains all the source C++ files of the project. The ``mater
 |-------------------------|------------|
 | Adding new tasks        | ✅          |
 | Deleting a task         | ✅          |
-| viewing logs            | ♻          |
+| Viewing logs            | ♻          |
 | Viewing completed tasks | ❌          |
 | Sorting by days         | ❌          |
 | Settings file           | ❌          |
