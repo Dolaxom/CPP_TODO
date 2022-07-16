@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <limits>
+#include <ctime>
 #include "libs/termcolor.hpp"
 
 using std::string;
@@ -21,8 +22,10 @@ class ToDoList {
         bool deleteTask(int index);
 
     private:
-        string nameOfFile;
+        string pathToTasks;
+        string pathToLogs;
         int makeChoice();
+        void writeLogs(int mode, string description);
         void output();
 };
 

@@ -2,13 +2,15 @@
 
 ToDoList::ToDoList()
 {
-    nameOfFile = "../data/tasks.txt";
+    pathToTasks = "../data/tasks.txt";
+    pathToLogs = "../data/logs.txt";
 }
 
 void ToDoList::newTask(string newTask)
 {
-    std::ofstream file(nameOfFile, std::ios_base::app);
+    std::ofstream file(pathToTasks, std::ios_base::app);
     file << newTask << "\n";
+    writeLogs(1, newTask);
     file.close();
 }
 
@@ -16,7 +18,7 @@ bool ToDoList::deleteTask(int index)
 {
     std::vector<string> tmp;
 
-    std::ifstream file(nameOfFile);
+    std::ifstream file(pathToTasks);
     if (file.is_open())
     {
         string str;
@@ -33,7 +35,7 @@ bool ToDoList::deleteTask(int index)
         }
         tmp.erase(tmp.begin() + index - 1);
 
-        std::ofstream outfile(nameOfFile);
+        std::ofstream outfile(pathToTasks);
         if (outfile.is_open())
         {
             std::copy(tmp.begin(), tmp.end(), std::ostream_iterator<string>(outfile, "\n"));
@@ -53,7 +55,7 @@ void ToDoList::output()
     std::cout << termcolor::red << "\tTODO List:" << std::endl;
     string str;
     int count = 1;
-    std::ifstream file(nameOfFile);
+    std::ifstream file(pathToTasks);
     while (!file.eof())
     {
         std::getline(file, str);
@@ -135,4 +137,17 @@ void ToDoList::choiceHandle(int choice)
         std::cout << "\e[H\e[2J\e[3J";
         output();
     }
+}
+
+void ToDoList::writeLogs(int mode, string description)
+{
+    std::ofstream file(pathToLogs, std::ios_base::app);
+    time_t seconds = time(NULL);
+    tm *timeinfo = localtime(&seconds);
+
+    if (mode == 1) {
+        file << asctime(timeinfo) << "* Creating a new task: " << description << "\n\n";
+    }
+
+    file.close();
 }
