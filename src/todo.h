@@ -24,9 +24,12 @@ class ToDoList {
     private:
         string pathToTasks;
         string pathToLogs;
+        string pathToSettings;
         int makeChoice();
         void writeLogs(int mode, string description);
         void output();
+        void text(int mode);
+        void clearScreen();
 };
 
 #endif

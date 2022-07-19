@@ -4,6 +4,7 @@ ToDoList::ToDoList()
 {
     pathToTasks = "../data/tasks.txt";
     pathToLogs = "../data/logs.txt";
+    pathToSettings = "../data/settings.txt";
 }
 
 void ToDoList::newTask(string newTask)
@@ -72,28 +73,20 @@ int ToDoList::TUI(int mode)
 {
     if (mode == 1)
     {
-        std::cout << termcolor::white;
-        std::cout << "1. New Task\n";
-        std::cout << "2. Delete Task\n";
-        std::cout << "3. Output Tasks\n";
+        text(1);
 
         return 0;
     }
     else if (mode == 2)
     {
-        std::cout << "Enter an item: ";
+        text(3);
         int choice = makeChoice();
 
         return choice;
     }
     else if (mode == 3)
     {
-        std::cout << termcolor::white;
-        std::cout << "1. New Task\n";
-        std::cout << "2. Delete Task\n";
-        std::cout << "3. Output Tasks\n";
-
-        std::cout << "Enter an item: ";
+        text(2);
         int choice = makeChoice();
 
         return choice;
@@ -120,7 +113,7 @@ void ToDoList::choiceHandle(int choice)
         string s1;
         std::cout << "Enter new task: ";
         std::getline(std::cin, s1);
-        std::cout << "\e[H\e[2J\e[3J";
+        clearScreen();
         newTask(s1);
     }
     else if (choice == 2)
@@ -129,12 +122,12 @@ void ToDoList::choiceHandle(int choice)
         int index = makeChoice();
         if (deleteTask(index) != false)
         {
-            std::cout << "\e[H\e[2J\e[3J";
+            clearScreen();
         }
     }
     else if (choice == 3)
     {
-        std::cout << "\e[H\e[2J\e[3J";
+        clearScreen();
         output();
     }
 }
@@ -145,9 +138,31 @@ void ToDoList::writeLogs(int mode, string description)
     time_t seconds = time(NULL);
     tm *timeinfo = localtime(&seconds);
 
-    if (mode == 1) {
+    if (mode == 1)
+    {
         file << asctime(timeinfo) << "* Creating a new task: " << description << "\n\n";
     }
 
     file.close();
+}
+
+void ToDoList::text(int mode)
+{
+    if (mode == 1 || mode == 2)
+    {
+        std::cout << termcolor::white;
+        std::cout << "1. New Task\n";
+        std::cout << "2. Delete Task\n";
+        std::cout << "3. Output Tasks\n";
+        std::cout << "9. Settings\n";
+    }
+    else if (mode == 2 || mode == 3)
+    {
+        std::cout << "Enter an item: ";
+    }
+}
+
+void ToDoList::clearScreen()
+{
+    std::cout << "\e[H\e[2J\e[3J";
 }
