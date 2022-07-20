@@ -7,6 +7,7 @@
 #include <vector>
 #include <limits>
 #include <ctime>
+#include <stdlib.h>
 #include "libs/termcolor.hpp"
 
 using std::string;

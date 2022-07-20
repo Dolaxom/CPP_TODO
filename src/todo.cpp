@@ -86,14 +86,16 @@ int ToDoList::TUI(int mode)
     }
     else if (mode == 3)
     {
+        clearScreen();
+        output();
         text(2);
+        std::cout << "> ";
         int choice = makeChoice();
 
         return choice;
     }
 
     return 0;
-
 }
 
 int ToDoList::makeChoice()
@@ -121,14 +123,16 @@ void ToDoList::choiceHandle(int choice)
         std::cout << "Enter number of task: ";
         int index = makeChoice();
         if (deleteTask(index) != false)
-        {
             clearScreen();
-        }
     }
     else if (choice == 3)
     {
+        
+    }
+    else if (choice == 9)
+    {
         clearScreen();
-        output();
+        exit(0);
     }
 }
 
@@ -153,8 +157,8 @@ void ToDoList::text(int mode)
         std::cout << termcolor::white;
         std::cout << "1. New Task\n";
         std::cout << "2. Delete Task\n";
-        std::cout << "3. Output Tasks\n";
-        std::cout << "9. Settings\n";
+        std::cout << "3. Settings\n";
+        std::cout << "9. Exit\n";
     }
     else if (mode == 2 || mode == 3)
     {
