@@ -34,6 +34,8 @@ bool ToDoList::deleteTask(int index)
             std::cout << termcolor::red << "ERROR: " << termcolor::white << "Your index > max num of tasks\n";
             return false;
         }
+
+        string log = tmp[index - 1];
         tmp.erase(tmp.begin() + index - 1);
 
         std::ofstream outfile(pathToTasks);
@@ -41,7 +43,7 @@ bool ToDoList::deleteTask(int index)
         {
             std::copy(tmp.begin(), tmp.end(), std::ostream_iterator<string>(outfile, "\n"));
             outfile.close();
-
+            writeLogs(2, log);
             return true;
         }
 
@@ -127,7 +129,7 @@ void ToDoList::choiceHandle(int choice)
     }
     else if (choice == 3)
     {
-        
+
     }
     else if (choice == 9)
     {
@@ -145,6 +147,10 @@ void ToDoList::writeLogs(int mode, string description)
     if (mode == 1)
     {
         file << asctime(timeinfo) << "* Creating a new task: " << description << "\n\n";
+    }
+    else if(mode == 2)
+    {
+        file << asctime(timeinfo) << "* Remove a task: " << description << "\n\n";
     }
 
     file.close();
