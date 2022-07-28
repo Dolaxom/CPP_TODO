@@ -5,7 +5,7 @@ TODOLIST:=todo
 all: $(TODOLIST)
 
 $(TODOLIST): main.cpp todo.cpp
-	g++ $(CFLAGS) todo.cpp main.cpp -o $(TODOLIST)
+	g++ $(CFLAGS) todo.cpp settings.cpp main.cpp -o $(TODOLIST)
 
 
 clean:

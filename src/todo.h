@@ -1,5 +1,5 @@
-#ifndef TODO_H
-#define TODO_H
+#ifndef SRC_TODO_H
+#define SRC_TODO_H
 
 #include <iostream>
 #include <fstream>
@@ -9,10 +9,12 @@
 #include <ctime>
 #include <stdlib.h>
 #include "libs/termcolor.hpp"
+#include "settings.h"
 
 using std::string;
 
-class ToDoList {
+class ToDoList
+{
     public:
         ToDoList();
         int TUI(int mode);

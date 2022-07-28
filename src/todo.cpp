@@ -129,7 +129,12 @@ void ToDoList::choiceHandle(int choice)
     }
     else if (choice == 3)
     {
-
+        Settings settings;
+        int working = 1;
+        while (working)
+        {
+            working = settings.settingsScreen();
+        }
     }
     else if (choice == 9)
     {
